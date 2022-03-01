@@ -4,6 +4,7 @@ import { CreateChampController } from "./controllers/CreatChampController";
 import { GetChampController } from "./controllers/GetChampController";
 import { GetFavoritesChampController } from "./controllers/GetFavoritesChampController";
 import { GetStylesController } from "./controllers/GetStylesController";
+import { GetTopChampController } from "./controllers/GetTopChampController";
 import { GetUserProfileController } from "./controllers/GetUserProfileController";
 import { ensureAuthenticated } from "./middleware/ensureAuthenticated";
 
@@ -19,6 +20,8 @@ router.get('/champs',ensureAuthenticated, new GetChampController().handle)
 
 router.get('/champsfavorite',ensureAuthenticated, new GetFavoritesChampController().handle)
 
-router.get('/styles', new GetStylesController().handle)
+router.get('/categories', new GetStylesController().handle)
+
+router.get('/lasttopchamps',ensureAuthenticated, new GetTopChampController().handle)
 
 export{router}
