@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id         String @id @default(uuid())
+  name       String
+  github_id  Int
+  avatar_url String
+  login      String
+
+  Cham Cham[]
+  @@map("users")
+}
+
+model Cham {
+  id          String @id @default(uuid())
+  name        String
+  picture_url String
+
+  user User @relation(fields: [user_id], references: [id])
+
+  user_id     String
+  is_favorite Boolean
+  style       Style   @relation(fields: [style_id], references: [id])
+  style_id    String
+  @@map("cham")
+}
+
+model Style {
+  id   String @id @default(uuid())
+  name String
+  Cham Cham[]
+}
