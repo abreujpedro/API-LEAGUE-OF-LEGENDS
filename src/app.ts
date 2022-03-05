@@ -22,4 +22,4 @@ app.use((error: Error, req : Request,resp: Response, next: NextFunction) => {
 //   return res.json(code);
 // })
 
-app.listen(4000, () => console.log('server'));
+app.listen(process.env.SERVER_PORT, () => console.log(`Server on port ${process.env.SERVER_PORT}`));
