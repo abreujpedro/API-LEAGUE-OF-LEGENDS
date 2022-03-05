@@ -1,1 +1,6 @@
 # API-LEAGUE-OF-LEGENDS USING NODE JS, TYPESCRIPT AND EXPRESS
+
+
+### `NPM RUN DEV`
+
+Runs the app at "http://localhost:4000"
