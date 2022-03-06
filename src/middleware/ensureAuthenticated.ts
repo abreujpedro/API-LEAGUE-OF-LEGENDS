@@ -9,7 +9,7 @@ export function ensureAuthenticated(req: Request, res: Response, next: NextFunct
     const authToken = req.headers.authorization;
     
     if(!authToken){
-        return res.status(401).json({errorCode: 'token.invalid'});
+        throw {status: 401, message: "Token inválido"};
     }
 
     const [, token] = authToken.split(" ");
@@ -21,7 +21,7 @@ export function ensureAuthenticated(req: Request, res: Response, next: NextFunct
         return next();
     }
     catch(err) {
-        return res.status(401).json({errorCode: 'token.expired'});
+        throw {status: 401, message: "Token inválido"};
     }
 
    

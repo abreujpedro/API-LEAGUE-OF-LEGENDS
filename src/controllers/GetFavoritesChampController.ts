@@ -1,15 +1,18 @@
-import {Request, Response} from 'express';
-import { GetFavoritesChampService } from '../services/GetFavoritesChampService';
+import { Request, Response } from "express";
+import { GetFavoritesChampService } from "../services/GetFavoritesChampService";
 
 class GetFavoritesChampController {
-    async handle(request: Request, response: Response) {
-        const {user_id} = request;
-        const service = new GetFavoritesChampService();
+  async handle(request: Request, response: Response) {
+    const { user_id } = request;
+    const champ_name = `${request.query.champName}`;
+    const service = new GetFavoritesChampService();
 
-            const result = await service.execute(user_id);
-            return response.json(result);
-        
-    }
+    const result =
+      Object.keys(request.query).length === 0
+        ? await service.execute(user_id)
+        : await service.execute(user_id, champ_name);
+    return response.json(result);
+  }
 }
 
-export {GetFavoritesChampController}
+export { GetFavoritesChampController };

@@ -9,8 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(router);
-app.use((error: Error, req : Request,resp: Response, next: NextFunction) => { 
-    return resp.json({statu: "Error", message: error.message})
+app.use((error: Error | any, req : Request,resp: Response, next: NextFunction) => { 
+    const statusCode = error?.status ? error.status : 500;
+    return resp.status(statusCode).json({status: statusCode , message: error.message})
 });
 
 // app.get('/github', (req, res) => {
@@ -22,4 +23,6 @@ app.use((error: Error, req : Request,resp: Response, next: NextFunction) => {
 //   return res.json(code);
 // })
 
-app.listen(process.env.SERVER_PORT, () => console.log(`Server on port ${process.env.SERVER_PORT}`));
+const port = process.env.PORT || process.env.SERVER_PORT;
+
+app.listen(process.env.SERVER_PORT, () => console.log(`Server on port ${port}`));
