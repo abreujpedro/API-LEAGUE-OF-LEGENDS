@@ -32,17 +32,21 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 Para instalar o projeto, siga estas etapas:
 
 Linux e macOS:
+```
 
 $ git clone https://github.com/abreujpedro/API-LEAGUE-OF-LEGENDS.git
 
+```
 
 ## ☕ Iniciando o League of Legends
 
 Para usar o projeto, siga estas etapas:
 
+```
 
 $ npm  run dev
 
+```
 
 * É necessário adicionar as chaves no arquivo template de .env
 
