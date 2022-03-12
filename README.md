@@ -32,10 +32,11 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 Para instalar o projeto, siga estas etapas:
 
-Linux e macOS:
 ```
 
 $ git clone https://github.com/abreujpedro/API-LEAGUE-OF-LEGENDS.git
+
+$ npm install
 
 ```
 
