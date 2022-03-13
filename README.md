@@ -20,8 +20,8 @@
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [ ] Não permitir criar campeão sem os campos necessários
 - [ ] Criar rotas para deletar e atualizar informações dos campeões
+- [ ] Migrar de SQLite para MySQL
 
 ## 💻 Pré-requisitos
 
