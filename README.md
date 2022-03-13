@@ -20,6 +20,7 @@
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
+- [ ] Não permitir criar campeão sem os campos necessários
 - [ ] Criar rotas para deletar e atualizar informações dos campeões
 
 ## 💻 Pré-requisitos
@@ -31,10 +32,11 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 Para instalar o projeto, siga estas etapas:
 
-Linux e macOS:
 ```
 
 $ git clone https://github.com/abreujpedro/API-LEAGUE-OF-LEGENDS.git
+
+$ npm install
 
 ```
 
