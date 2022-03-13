@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
+import CustomEror from "../utils/customEror";
 
 interface IPayload {
   sub: string;
@@ -13,7 +14,7 @@ export function ensureAuthenticated(
   const authToken = req.headers.authorization;
 
   if (!authToken) {
-    throw new Error("Token inválido");
+    throw new CustomEror("Token inválido", 401);
   }
 
   const [, token] = authToken.split(" ");
@@ -24,6 +25,6 @@ export function ensureAuthenticated(
     req.user_id = sub;
     return next();
   } catch (err) {
-    throw new Error("Token inválido");
+    throw new CustomEror("Token inválido", 401);
   }
 }

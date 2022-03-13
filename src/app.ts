@@ -5,6 +5,7 @@ import { Request, Response, NextFunction } from "express";
 import "express-async-errors";
 
 import { router } from "./routes";
+import CustomEror from "./utils/customEror";
 
 const app = express();
 app.use(cors());
@@ -12,8 +13,8 @@ app.use(express.json());
 app.use(router);
 app.use(
   (error: Error | any, req: Request, resp: Response, next: NextFunction) => {
-    if (error instanceof Error) {
-      return resp.status(400).json({ error: error.message });
+    if (error instanceof CustomEror) {
+      return resp.status(error.code).json({ error: error.message });
     }
     return resp
       .status(500)
