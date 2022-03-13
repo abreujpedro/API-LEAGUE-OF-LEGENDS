@@ -2,6 +2,7 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import { Request, Response, NextFunction } from "express";
+import "express-async-errors";
 
 import { router } from "./routes";
 
@@ -11,10 +12,12 @@ app.use(express.json());
 app.use(router);
 app.use(
   (error: Error | any, req: Request, resp: Response, next: NextFunction) => {
-    const statusCode = error.status || 500;
+    if (error instanceof Error) {
+      return resp.status(400).json({ error: error.message });
+    }
     return resp
-      .status(statusCode)
-      .json({ status: statusCode, message: error.message });
+      .status(500)
+      .json({ status: 500, message: "internal server error" });
   }
 );
 

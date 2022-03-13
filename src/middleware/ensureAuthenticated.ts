@@ -1,28 +1,29 @@
-import {Request, Response, NextFunction} from 'express';
-import { verify } from 'jsonwebtoken';
+import { Request, Response, NextFunction } from "express";
+import { verify } from "jsonwebtoken";
 
 interface IPayload {
-    sub: string;
+  sub: string;
 }
 
-export function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
-    const authToken = req.headers.authorization;
-    
-    if(!authToken){
-        throw {status: 401, message: "Token inválido"};
-    }
+export function ensureAuthenticated(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const authToken = req.headers.authorization;
 
-    const [, token] = authToken.split(" ");
+  if (!authToken) {
+    throw new Error("Token inválido");
+  }
 
-    try{
-        const { sub } = verify(token, process.env.JWT_SECREAT) as IPayload;
+  const [, token] = authToken.split(" ");
 
-        req.user_id = sub;
-        return next();
-    }
-    catch(err) {
-        throw {status: 401, message: "Token inválido"};
-    }
+  try {
+    const { sub } = verify(token, process.env.JWT_SECREAT) as IPayload;
 
-   
+    req.user_id = sub;
+    return next();
+  } catch (err) {
+    throw new Error("Token inválido");
+  }
 }
